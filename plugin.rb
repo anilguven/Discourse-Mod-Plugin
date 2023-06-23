@@ -80,6 +80,12 @@ after_initialize do
       super(topic)
     end
 
+    def can_view_flags?
+      group_names = SiteSetting.custom_permissions_groups.split('|')
+      return true if user && group_names.any? { |name| user.groups.where(name: name).exists? }
+      super(topic)
+    end
+
     # diğer metodlar...
   end
 
