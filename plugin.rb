@@ -12,8 +12,8 @@ Plugin::Metadata.new do
 end
 
 # SiteSetting ekranı
-SiteSetting.defaults[:custom_permissions_groups] = ''
-SiteSetting.defaults[:custom_unapproved_post_viewers_groups] = ''
+SiteSetting.define_setting(:custom_permissions_groups, 'group1|group2', type: :string, allow_user_override: true)
+SiteSetting.define_setting(:custom_unapproved_post_viewers_groups, 'group3|group4', type: :string, allow_user_override: true)
 
 after_initialize do
   module ::GuardianExtensions
