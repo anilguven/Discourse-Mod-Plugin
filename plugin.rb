@@ -44,6 +44,42 @@ after_initialize do
       super(post)
     end
 
+    def can_pin?(topic)
+      group_names = SiteSetting.custom_permissions_groups.split('|')
+      return true if user && group_names.any? { |name| user.groups.where(name: name).exists? }
+      super(topic)
+    end
+
+    def can_unpin?(topic)
+      group_names = SiteSetting.custom_permissions_groups.split('|')
+      return true if user && group_names.any? { |name| user.groups.where(name: name).exists? }
+      super(topic)
+    end
+
+        def can_close_topic?(topic)
+      group_names = SiteSetting.custom_permissions_groups.split('|')
+      return true if user && group_names.any? { |name| user.groups.where(name: name).exists? }
+      super(topic)
+    end
+
+    def can_archive_topic?(topic)
+      group_names = SiteSetting.custom_permissions_groups.split('|')
+      return true if user && group_names.any? { |name| user.groups.where(name: name).exists? }
+      super(topic)
+    end
+
+    def can_unlist_topic?(topic)
+      group_names = SiteSetting.custom_permissions_groups.split('|')
+      return true if user && group_names.any? { |name| user.groups.where(name: name).exists? }
+      super(topic)
+    end
+
+    def can_split_merge_topic?(topic)
+      group_names = SiteSetting.custom_permissions_groups.split('|')
+      return true if user && group_names.any? { |name| user.groups.where(name: name).exists? }
+      super(topic)
+    end
+
     # diğer metodlar...
   end
 
