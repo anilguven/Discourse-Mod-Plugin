@@ -6,7 +6,7 @@ Plugin::Metadata.new do
   version     "0.1"
   author      "Anil Guven"
   url         "https://github.com/anilguven"
-  about       "This if for moderator permissions."
+  about       "This is for moderator permissions."
   version     "1.0.0"
   required_version "2.7.0"
 end
@@ -27,12 +27,6 @@ after_initialize do
       group_names = SiteSetting.custom_permissions_groups.split('|')
       return true if user && group_names.any? { |name| user.groups.where(name: name).exists? }
       super(post)
-    end
-
-    def can_delete_user?(deletee)
-      group_names = SiteSetting.custom_permissions_groups.split('|')
-      return true if user && group_names.any? { |name| user.groups.where(name: name).exists? }
-      super(deletee)
     end
 
     def can_see_topic?(topic)
