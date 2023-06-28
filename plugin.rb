@@ -11,11 +11,10 @@ Plugin::Metadata.new do
   required_version "2.7.0"
 end
 
-# SiteSetting ekranı
+after_initialize do
 Discourse::SiteSetting.define_setting(:custom_permissions_groups, 'group1|group2', type: :string, allow_user_override: true)
 Discourse::SiteSetting.define_setting(:custom_unapproved_post_viewers_groups, 'group3|group4', type: :string, allow_user_override: true)
 
-after_initialize do
   module ::GuardianExtensions
     def can_edit_post?(post)
       group_names = SiteSetting.custom_permissions_groups.split('|')
@@ -83,7 +82,7 @@ after_initialize do
     def can_view_flags?
       group_names = SiteSetting.custom_permissions_groups.split('|')
       return true if user && group_names.any? { |name| user.groups.where(name: name).exists? }
-      super(topic)
+      super()
     end
 
     # diğer metodlar...
