@@ -1,12 +1,12 @@
 # plugin.rb
 # frozen_string_literal: true
 
-Plugin::Metadata.new do
-  name        "Discourse Mod Plugin"
-  version     "0.1"
-  author      "Anil Guven"
-  url         "https://github.com/anilguven"
-  about       "This is for moderator permissions."
+Plugin::Metadata.new do |metadata|
+  metadata.name        = "Discourse Mod Plugin"
+  metadata.version     = "0.1"
+  metadata.author      = "Anil Guven"
+  metadata.url         = "https://github.com/anilguven"
+  metadata.about       = "This is for moderator permissions."
 end
 
 after_initialize do
